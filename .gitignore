@@ -1,0 +1,15 @@
+# Editor Configs
+.venv/
+.atom/
+.vscode/
+.idea/
+
+# Database file
+db.sqlite3
+
+# Python Artifacts
+*.pyc
+.eggs/
+
+# Git Artifacts
+*.orig

@@ -1,0 +1,1 @@
+python ./moviewatchlist/manage.py runserver --settings=moviewatchlist.settings
