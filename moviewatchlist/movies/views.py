@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+# from django.http import HttpResponse
 
-def home_test(request):
-    return HttpResponse("Tesing movies!")
+from . models import Movie
 
-# Create your views here.
+def home(request):
+    movies = Movie.objects.all()
+    return render(request, "home.html", {"movies": movies})

@@ -19,6 +19,7 @@ from django.contrib import admin
 from movies import views
 
 urlpatterns = [
-    url(r'^$', views.home_test, name='home_test'),
+    url(r'^$', views.home, name='home'),
+    # url(r^'movies/(?P<pk>\d+)/$', views.)
     url(r'^admin/', admin.site.urls),
 ]
