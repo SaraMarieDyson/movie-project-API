@@ -20,6 +20,6 @@ from movies import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r^'movies_detail/(?P<pk>\d+)/$', views.movies_detail, name="movies_detail"),
+    url(r'^movies_detail/(?P<pk>\d+)/$', views.movies_detail, name="movies_detail"),
     url(r'^admin/', admin.site.urls),
 ]

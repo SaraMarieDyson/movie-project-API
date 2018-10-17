@@ -6,3 +6,7 @@ from . models import Movie
 def home(request):
     movies = Movie.objects.all()
     return render(request, "home.html", {"movies": movies})
+
+def movies_detail(request, pk):
+    movie = Movie.objects.get(pk=pk)
+    return render(request, "movie_detai.html", {"movies": movies})
