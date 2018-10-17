@@ -8,5 +8,5 @@ def home(request):
     return render(request, "home.html", {"movies": movies})
 
 def movies_detail(request, pk):
-    movie = Movie.objects.get(pk=pk)
-    return render(request, "movie_detai.html", {"movies": movies})
+    movies = Movie.objects.get(pk=pk)
+    return render(request, "movie_detail.html", {"movies": movies})
