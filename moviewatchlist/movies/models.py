@@ -19,6 +19,7 @@ class ActorActressList(models.Model):
     name = models.CharField(max_length=50, help_text="name of the preformer")
     description = models.CharField(max_length=200, help_text="gives information about the preformer")
     movies = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="actor_actress_list")
+    # NOTE: FK may need a many ti many relationship
 
 
 class Review(models.Model):
