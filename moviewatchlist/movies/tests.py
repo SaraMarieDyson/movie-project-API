@@ -29,3 +29,11 @@ class MovieDetailsViewTests(TestCase):
         url = reverse("movies_detail", kwargs={"pk": self.movie.pk})
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, 200)
+
+    def test_movie_not_found_status_code(self):
+        """
+        :ac: Returns a 404, if movie doesn't exist
+        """
+        url = reverse("movies_detail", kwargs={"pk": 99})
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 404)
