@@ -7,9 +7,14 @@
   </head>
   <body>
     <div class="container">
-      <ol class="breadcrumb my-4">
-        <li class="breadcrumb-item">Movies</li>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Movies Home</li>
         <li class="breadcrumb-item active">{{ movies.movie_title }}</li>
+        <p>
+          {{ movies.description }}
+          {{ actor.name }}
+          {{ actor.desription }}
+        </p>
       </ol>
     </div>
   </body>
