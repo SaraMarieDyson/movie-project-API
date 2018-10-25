@@ -6,17 +6,16 @@ def home(request):
     return render(request, "home.html", {"movies": movies})
 
 def movies_detail(request, pk):
-    movie = get_object_or_404(Movie, pk=pk)
-    lead = get_object_or_404(ActorActressList, pk=pk)
-    try:
-        movie = Movie.objects.get(pk=pk)
-        lead_in_movie = ActorActressList.objects.filter(movies__movie_title=lead)
-    except Movie.DoesNotExist:
-        raise Http404
-    return render(request, "movie_detail.html", {"movie": movie})
-    # if request.method == "GET":
-    #     movie_info = get_object_or_404(Movie, pk=pk)
-    #     lead = ActorActressList.objects.get(pk=pk)
-    #     lead_in_movie = ActorActressList.objects.filter(movies__movie_title=lead)
-    # return render(request, "movie_detail.html",)
-    # return render(request, "movie_detail.html", {"movies": movies, "actor": actor})
+    if request.method == "GET":
+        movie = get_object_or_404(Movie, pk=pk)
+        # movie_id = Movie.objects.get(pk=id)
+        # Filter list: get actors/actresses who have a movie with this pk.
+        # .first(): Get the first performer off the list.
+        actor = ActorActressList.objects.filter(movies__pk=pk).first()
+        # try:
+        #     movie = Movie.objects.get(pk=pk)
+        #     lead_in_movie = ActorActressList.objects.filter(movies__movie_title=lead)
+        # except Movie.DoesNotExist:
+        #     raise Http404
+    return render(request, "movie_detail.html", {"movie": movie, "actor": actor})
+    # return render(request, "movie_detail.html", {"movie": movie})

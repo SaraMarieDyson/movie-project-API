@@ -8,12 +8,13 @@
   <body>
     <div class="container">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item active">Movies Home</li>
-        <li class="breadcrumb-item active">{{ movies.movie_title }}</li>
+        <li class="breadcrumb-item active">Movies Detail</li>
+        <div>{{ movie.movie_title }}</div> 
         <p>
-          {{ movies.description }}
+          {{ movie.description }}
           {{ actor.name }}
           {{ actor.desription }}
+          {{ actor.movie}}
         </p>
       </ol>
     </div>
