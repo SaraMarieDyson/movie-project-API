@@ -7,9 +7,24 @@ class Movie(models.Model):
     """
     movie_title = models.CharField(max_length=100, help_text="names a movie's title")
     description = models.CharField(max_length=200, help_text="details about a movie, such as ratings, release etc")
+    category = models.ManyToManyField(Category)
 
     def __str__(self):
         return self.movie_title
+
+
+class Category(models.Model):
+    """
+    Lists the Category or genre of the movie ie Action, RomCom, Drama
+    """
+    category = models.CharField(max=100)
+
+    def __str__(self):
+        return self.category
+
+
+class moviewatchlist(models.Model):
+    pass
 
 
 class ActorActressList(models.Model):
