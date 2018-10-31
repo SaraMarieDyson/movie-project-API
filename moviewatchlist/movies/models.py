@@ -8,6 +8,7 @@ class Movie(models.Model):
     movie_title = models.CharField(max_length=100, help_text="names a movie's title")
     description = models.CharField(max_length=200, help_text="details about a movie, such as ratings, release etc")
     category = models.ManyToManyField(Category)
+    movie_list = models.ForeignKey(MovieWatchList, on_delete=models.CASCADE, related_name="movie_list")
 
     def __str__(self):
         return self.movie_title
@@ -23,8 +24,13 @@ class Category(models.Model):
         return self.category
 
 
-class moviewatchlist(models.Model):
-    pass
+class MovieWatchList(models.Model):
+    """
+    Stores a list of movies
+    """
+    movie_list_name = models.CharField(max_length=100, help_text="The title of the list")
+    list_created = models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=100, help_text="The unregistered User's name")
 
 
 class ActorActressList(models.Model):
@@ -34,7 +40,7 @@ class ActorActressList(models.Model):
     name = models.CharField(max_length=50, help_text="name of the preformer")
     description = models.CharField(max_length=200, help_text="gives information about the preformer")
     movies = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="actor_actress_list")
-    # NOTE: FK may need a many ti many relationship
+    # NOTE: FK may need a many to many relationship on this ^
 
 
 class Review(models.Model):
