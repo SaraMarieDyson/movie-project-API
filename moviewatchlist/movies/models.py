@@ -1,28 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User # Using the django built in user for now
 
-class Movie(models.Model):
-    """
-    A movie model for listing movie titles and a description
-    """
-    movie_title = models.CharField(max_length=100, help_text="names a movie's title")
-    description = models.CharField(max_length=200, help_text="details about a movie, such as ratings, release etc")
-    category = models.ManyToManyField(Category)
-    movie_list = models.ForeignKey(MovieWatchList, on_delete=models.CASCADE, related_name="movie_list")
-
-    def __str__(self):
-        return self.movie_title
-
-
-class Category(models.Model):
-    """
-    Lists the Category or genre of the movie ie Action, RomCom, Drama
-    """
-    category = models.CharField(max=100)
-
-    def __str__(self):
-        return self.category
-
 
 class MovieWatchList(models.Model):
     """
@@ -31,6 +9,28 @@ class MovieWatchList(models.Model):
     movie_list_name = models.CharField(max_length=100, help_text="The title of the list")
     list_created = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100, help_text="The unregistered User's name")
+
+
+class Category(models.Model):
+    """
+    Lists the Category or genre of the movie ie Action, RomCom, Drama
+    """
+    category = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.category
+
+class Movie(models.Model):
+    """
+    A movie model for listing movie titles and a description
+    """
+    movie_title = models.CharField(max_length=100, help_text="names a movie's title")
+    description = models.CharField(max_length=200, help_text="details about a movie, such as ratings, release etc")
+    category = models.ManyToManyField(Category, related_name="movie_category")
+    movie_list = models.ForeignKey(MovieWatchList, on_delete=models.CASCADE, blank=True, null=True, related_name="movie_list")
+
+    def __str__(self):
+        return self.movie_title
 
 
 class ActorActressList(models.Model):
