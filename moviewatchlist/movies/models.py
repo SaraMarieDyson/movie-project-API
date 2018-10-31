@@ -7,6 +7,7 @@ class MovieWatchList(models.Model):
     Stores a list of movies
     """
     movie_list_name = models.CharField(max_length=100, help_text="The title of the list")
+    list_of_movies = models.TextField(null=True)
     list_created = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100, help_text="The unregistered User's name")
 
@@ -31,6 +32,12 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.movie_title
+
+    # @property
+    # def movie_list(self):
+    #     # Watch for large querysets: it loads everything in memory
+    #     # This is useful for if movie_list is set as ManyToManyField
+    #     return list(self.movie.all())
 
 
 class ActorActressList(models.Model):
