@@ -27,7 +27,7 @@ class Movie(models.Model):
     """
     movie_title = models.CharField(max_length=100, help_text="names a movie's title")
     description = models.CharField(max_length=200, help_text="details about a movie, such as ratings, release etc")
-    category = models.ManyToManyField(Category, related_name="movie_category")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name="movie_category")
     movie_list = models.ForeignKey(MovieWatchList, on_delete=models.CASCADE, blank=True, null=True, related_name="movie_list")
 
     def __str__(self):
@@ -37,7 +37,7 @@ class Movie(models.Model):
     # def movie_list(self):
     #     # Watch for large querysets: it loads everything in memory
     #     # This is useful for if movie_list is set as ManyToManyField
-    #     return list(self.movie.all())
+    #     return list(self.movie_list.all())
 
 
 class ActorActressList(models.Model):

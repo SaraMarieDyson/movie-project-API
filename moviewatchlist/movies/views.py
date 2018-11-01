@@ -12,3 +12,7 @@ def movies_detail(request, pk):
         # .first(): Get the first performer off the list.
         actor = ActorActressList.objects.filter(movies__pk=pk).first()
     return render(request, "movie_detail.html", {"movie": movie, "actor": actor})
+
+def movie_watch_list(request, pk):
+    movie_list = get_object_or_404(MovieWatchList, pk=pk)
+    return render(request, "movie_watch_list.html", {"movie_list": movie_list})

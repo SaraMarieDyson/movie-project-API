@@ -21,5 +21,6 @@ from movies import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^movies_detail/(?P<pk>\d+)/$', views.movies_detail, name="movies_detail"),
+    url(r'^movie_watch_list/(?P<pk>\d+)/$', views.movie_watch_list, name="movie_watch_list"),
     url(r'^admin/', admin.site.urls),
 ]
