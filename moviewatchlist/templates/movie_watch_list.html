@@ -1,22 +1,21 @@
-{% load static %}
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{ movies.movie_title }}</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  </head>
-  <body>
-    <div class="container">
-      <div> Personal Movie List Page </div>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item active">{{ movie_list.movie_list_name }}</li>
-        <p>
-          <div>List of movies:<div>
-          {{ movie_list.list_of_movies }}
-          {{ movie_list.list_created }}
-          {{ movie_list.created_by }}
-        </p>
-      </ol>
-    </div>
-  </body>
-</html>
+{% extends 'base.html' %}
+{% block title %}
+{{ movies.movie_list }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <h1> Personal Movie List Page </h1>
+      {{ movie_lists.movie_list_name}}<br>
+      {% for m in movies %}
+      {{ m.movie_title }}<br>
+      {% endfor %}
+      {{ movie_lists.list_created }}<br>
+      {{ movie_lists.created_by }}
+    </tr>
+  </thead>
+</table>
+
+{% endblock %}

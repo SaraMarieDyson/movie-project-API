@@ -1,23 +1,23 @@
-{% load static %}
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{ movies.movie_title }}</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  </head>
-  <body>
-    <div class="container">
-      <div> Details of movie </div>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item active">{{ movie.movie_title }}</li>
-        <p>
-          <div>description of the movie:<div>
-          {{ movie.description }}
-          {{ actor.name }}
-          {{ actor.desription }}
-          {{ actor.movie}}
-        </p>
-      </ol>
-    </div>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %} Displays details of a given movie {% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <h1> Movie detail Page </h1>
+    </tr>
+  </thead>
+  <tbody>
+    {{ movie.movie_title }}<br>
+    {{ movie.description }}<br>
+    {{ movie.recently_added}}<br>
+
+    {% for act in actor %}
+    {{ act.name }} <br>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
