@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ movies.movie_list }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <h1> Personal Movie List Page </h1>
+      {{ movie_lists.movie_list_name}}<br>
+      {% for m in movies %}
+      {{ m.movie_title }}<br>
+      {% endfor %}
+      {{ movie_lists.list_created }}<br>
+      {{ movie_lists.created_by }}
+    </tr>
+  </thead>
+</table>
+
+{% endblock %}

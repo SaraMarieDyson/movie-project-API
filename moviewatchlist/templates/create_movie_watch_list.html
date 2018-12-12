@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Allows a user to create a movie list {% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="id_movie_list">Movie List Name</label>
+      <input type="text" class="form-control" id="id_movie_list" name="movie_list">
+    </div>
+    <div class="form-group">
+      <label for="id_movies">Movie Title</label>
+      <textarea class="form-control" id=id_movies, name=movies rows="5"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="id_user_created">Creator of Movie Watch List</label>
+      <textarea class="form-control" id=id_user_created, name=user_created rows="5"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Post</button>
+  </form>
+{% endblock %}

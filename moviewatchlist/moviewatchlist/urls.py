@@ -1,3 +1,6 @@
+
+
+
 """moviewatchlist URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -21,5 +24,7 @@ from movies import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^movies_detail/(?P<pk>\d+)/$', views.movies_detail, name="movies_detail"),
+    url(r'^movie_watch_list/(?P<pk>\d+)/$', views.movie_watch_list, name="movie_watch_list"),
+    url(r'^create_movie_watch_list/new/$', views.create_movie_watch_list, name="create_movie_watch_list"),
     url(r'^admin/', admin.site.urls),
 ]
