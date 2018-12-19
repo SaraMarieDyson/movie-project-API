@@ -1,0 +1,25 @@
+<!-- {% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}Allows a user to add a Movie{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'movie_list' %}">Movies</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'movie_watch_list' %}">Movie Watch List</a></li>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_subject">Title</label>
+      <input type="text" class="form-control" id="id_title" name="title">
+    </div>
+    <div class="form-group">
+      <label for="id_message">Description</label>
+      <textarea class="form-control" id="id_description" name="description" rows="5"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Post</button>
+  </form>
+{% endblock %} -->

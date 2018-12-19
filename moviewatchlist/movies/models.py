@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User # Using the django built in user for now
+from django.contrib.auth.models import User  # Using the django built in user for now
 
 
 class MovieWatchList(models.Model):

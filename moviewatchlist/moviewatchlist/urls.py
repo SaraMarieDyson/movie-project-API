@@ -1,20 +1,6 @@
+"""Moviewatchlist URL Configuration.
 
-
-
-"""moviewatchlist URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+Lists URL routes.
 """
 from django.conf.urls import url
 from django.contrib import admin
@@ -23,8 +9,11 @@ from movies import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^movies_detail/(?P<pk>\d+)/$', views.movies_detail, name="movies_detail"),
-    url(r'^movie_watch_list/(?P<pk>\d+)/$', views.movie_watch_list, name="movie_watch_list"),
-    url(r'^create_movie_watch_list/new/$', views.create_movie_watch_list, name="create_movie_watch_list"),
+    url(r'^movies/$', views.movie_list, name="movie_list"),
+    url(r'^movies/(?P<pk>\d+)/$', views.movies_detail, name="movies_detail"),
+    url(r'^movie_watch_list/$', views.create_movie_watch_list,
+        name="create_movie_watch_list"),
+    url(r'^movie_watch_list/(?P<pk>\d+)/$', views.movie_watch_list,
+        name="movie_watch_list"),
     url(r'^admin/', admin.site.urls),
 ]

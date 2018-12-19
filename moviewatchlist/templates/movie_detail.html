@@ -21,3 +21,8 @@
 </table>
 
 {% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'movie_list' %}">Movies</a></li>
+<li class="breadcrumb-item"><a href="{% url 'create_movie_watch_list' %}">Create new movie list</a></li>
+{% endblock %}
