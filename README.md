@@ -2,6 +2,8 @@
 
 The goal of this project is to get you up to speed on some of the things that you are struggling with, as well as get you comfortable working to customer requests. It is expected that you will work on this regularly, and try to get things completed as if the "client" were actually expecting you to complete the work.
 
+## IMPORTANT: If there are any issues with migrations, such as error - blow away the DB and start again.
+
 ## Some things that we want you to work on:
 
 * General Django skills, including working with a database and the ORM
