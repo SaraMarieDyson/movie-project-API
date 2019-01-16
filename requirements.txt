@@ -1,2 +1,5 @@
 # Django stuff
 Django>=1.11.0,<2.0
+
+# Django front-end package for rendering bootstrap: django-widget-tweaks. Add "widget_tweaks" to the settings.INSTALLED_APPS
+pip install django-widget-tweaks
