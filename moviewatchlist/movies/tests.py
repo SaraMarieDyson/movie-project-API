@@ -6,6 +6,7 @@ import datetime
 
 from . models import Movie, Preformer, Category, MovieWatchList
 from . views import home, movies_detail, movie_watch_list
+from . forms import NewMovieWatchListForm
 
 class HomePageTests(TestCase):
     def setUp(self):
@@ -13,11 +14,34 @@ class HomePageTests(TestCase):
 
     def test_home_view_staus_code(self):
         """
-        :ac: Returns a status 200
+        :ac: Returns a status 302 (Found).
         """
         url = reverse("home")
         resp = self.client.get(url)
-        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 302)
+
+class MoviesRedirectTest(TestCase):
+    def setUp(self):
+        self.movie = Movie.objects.create(movie_title="Test movie", description="testing 123")
+        self.url = reverse("movie_list")
+        self.response = self.client.get(self.url)
+
+    def test_movies_view_status_code(self):
+        """
+        :ac: Returns a status 200
+        """
+        self.assertEqual(self.response.status_code, 200)
+
+
+    def test_create_movie_watch_list_contains_link_to_movie_watch_list(self):
+        """
+        :ac: Test if link between movie list has working link to detail page.
+        """
+        movie_url = reverse(
+            'movies_detail',
+            kwargs={'pk': self.movie.pk}
+        )
+        self.assertContains(self.response, 'href="{0}"'.format(movie_url))
 
 
 class MovieDetailsViewTests(TestCase):
@@ -33,6 +57,7 @@ class MovieDetailsViewTests(TestCase):
             # movies=self.movie
         )
         self.actor.movies.add(self.movie)  # the parent model must be saved first before adding a m2m
+
 
     def test_movie_detail_status_code(self):
         """
@@ -51,7 +76,7 @@ class MovieDetailsViewTests(TestCase):
         self.assertEqual(resp.status_code, 404)
 
     def test_movie_details_resolves_detail_view(self):
-        test_movie_detail = resolve("/movies_detail/1/")
+        test_movie_detail = resolve("/movies/1/")
         self.assertEqual(test_movie_detail.func, movies_detail)
 
     def test_movie_detail_contains_information_on_movie(self):
@@ -61,6 +86,15 @@ class MovieDetailsViewTests(TestCase):
         url = reverse("movies_detail", kwargs={"pk": self.movie.pk})
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, 200)
+
+    def test_create_movie_watch_list_contains_link_to_movie_watch_list(self):
+        movie_detail_url = reverse(
+            'movies_detail',
+            kwargs={'pk': self.movie.pk}
+        )
+        resp = self.client.get(movie_detail_url)
+        home_url = reverse("movie_list")
+        self.assertContains(resp, 'href="{0}"'.format(home_url))
 
 
 class MovieWatchListTests(TestCase):
@@ -89,18 +123,30 @@ class MovieWatchListTests(TestCase):
     def test_new_movie_list_valid_post_data(self):
         url = reverse('create_movie_watch_list')
         data = {
-            'movie_lists': 'Test title',
-            'movie': 'A good movie'
+            'movie_list_name': 'Test title',
+            'created_by': 'A Person',
         }
-        response = self.client.post(url, data)
+        resp = self.client.post(url, data)
         self.assertTrue(MovieWatchList.objects.exists())
         self.assertTrue(Movie.objects.exists())
 
-    def test_new_movie_listc_invalid_post_data(self):
-        '''
+
+    def test_contains_form(self):
+        """
+        :ac: Checks there is a form.
+        """
+        url = reverse("create_movie_watch_list")
+        resp = self.client.post(url)
+        form = resp.context.get("form")
+        self.assertIsInstance(form, NewMovieWatchListForm)
+
+    def test_new_movie_list_invalid_post_data(self):
+        """
         Invalid post data should not redirect
         The expected behavior is to show the form again with validation errors
-        '''
+        """
         url = reverse('create_movie_watch_list')
-        response = self.client.post(url, {})
-        self.assertEquals(response.status_code, 200)
+        resp = self.client.post(url)
+        form = resp.context.get("form")
+        self.assertTrue(form.errors)
+        self.assertEquals(resp.status_code, 200)

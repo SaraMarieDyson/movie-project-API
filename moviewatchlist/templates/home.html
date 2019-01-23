@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block breadcrumb %}
-  <!-- <li class="breadcrumb-item active">Movie List</li> -->
+  <li class="breadcrumb-item"><a href="{% url 'create_movie_watch_list' %}">Create new movie list</a></li>
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,11 @@
     </thead>
     <tbody>
       {% for movie in movies %}
-      {{ movie.movie_title }} <br>
+      <tr>
+        <td>
+          <a href="{% url 'movies_detail' movie.pk %}">{{ movie.movie_title }}</a>
+        <td>
+      <tr>
       {% endfor %}
     </tbody>
   </table>
