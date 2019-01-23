@@ -16,8 +16,24 @@
       <tr>
         <td>
           <a href="{% url 'movies_detail' movie.pk %}">{{ movie.movie_title }}</a>
-        <td>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <table class="table">
+    <thead class="thead-inverse">
       <tr>
+        <h1>Movie Watch Lists</h1>
+      </tr>
+    </thead>
+    <tbody>
+      {% for list in watch_lists %}
+      <tr>
+        <td>
+          <li class="breadcrumb-item"><a href="{% url 'movie_watch_list'  list.pk %}">{{ list.movie_list_name }}</a></li>
+        </td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>

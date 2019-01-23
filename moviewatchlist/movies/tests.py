@@ -23,6 +23,7 @@ class HomePageTests(TestCase):
 class MoviesRedirectTest(TestCase):
     def setUp(self):
         self.movie = Movie.objects.create(movie_title="Test movie", description="testing 123")
+        # self.list = MovieWatchList.objects.create(movie_list_name="test_list", created_by="test Person")
         self.url = reverse("movie_list")
         self.response = self.client.get(self.url)
 

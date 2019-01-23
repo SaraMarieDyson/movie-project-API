@@ -2,6 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User  # Using the django built in user for now
 
 
+class User(models.Model):
+    """
+    User model
+    """
+    username = models.CharField(max_length=300, unique=True)
+    email = models.EmailField(max_length=70, unique=True)
+    password = models.CharField(max_length=100)
+    is_superuser = models.BooleanField(default=False)
+
+
 class MovieWatchList(models.Model):
     """
     Stores a list of movies
