@@ -41,7 +41,7 @@ def movie_watch_list(request, pk):
         })
 
 # NOTE: Get this decorator working properly
-# @login_required
+@login_required(login_url='/login/')
 def create_movie_watch_list(request):
     """View that allows the user to create a list of movies."""
     user = User.objects.first()
