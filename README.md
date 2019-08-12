@@ -19,3 +19,7 @@ To run this website, we need to be able to manage the data in it. So we want to 
 * Create and manage actor and actress records
 * Write blog posts about interesting movies and actors
 * Manage accounts, including creating new ones and banning people that are causing problems
+
+To run project:
+* run virtualenv - source venv/bin/activate
+* python manage.py runserver
